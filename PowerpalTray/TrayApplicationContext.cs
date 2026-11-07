@@ -91,10 +91,9 @@ internal sealed class TrayApplicationContext : ApplicationContext
 
     private static string FormatReading(double kw)
     {
-        var absKw = Math.Abs(kw);
-        if (absKw < 10) return kw.ToString("0.00", CultureInfo.InvariantCulture);
-        if (absKw < 100) return kw.ToString("0.0", CultureInfo.InvariantCulture);
-        return kw.ToString("0", CultureInfo.InvariantCulture);
+        return Math.Abs(kw) < 10
+            ? kw.ToString("0.0", CultureInfo.InvariantCulture)
+            : kw.ToString("0", CultureInfo.InvariantCulture);
     }
 
     private void SetIcon(Icon newIcon)
